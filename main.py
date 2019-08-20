@@ -1,4 +1,5 @@
 import discord
+import requests
 import setting
 
 app = discord.Client()
@@ -24,7 +25,9 @@ async def on_message(message):
     if msg == "남고생쟝 초대하기":
         await message.channel.send(embed=discord.Embed(title="남고생쟝의 친구가 되어주세요!", description=discord.utils.oauth_url(app.user.id, discord.Permissions(67584))))
         return None
-    # if not not msg:
+    if not not msg:
+        if "some string" in msg:
+            pass
         # message.
 
 app.run(token)
