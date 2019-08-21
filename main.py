@@ -1,6 +1,7 @@
 import discord
 import requests
 import setting
+import modules.steamSync as ss
 
 app = discord.Client()
 
