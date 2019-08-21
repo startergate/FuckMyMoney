@@ -5,12 +5,10 @@ import requests
 
 
 @asyncio.coroutine
-async def steamLibraryConnectivity(steamid=76561198309509452):
+async def steamLibraryConnectivity(steamid=76561198149890990):
     while True:
         userlib = requests.get(
             'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=B6137C92F67299965B5E6BF287ECA4AE&steamid={}&include_appinfo=1&format=json'.format(
-                steamid))
-        print('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=B6137C92F67299965B5E6BF287ECA4AE&steamid={}&include_appinfo=1&format=json'.format(
                 steamid))
         userlib = userlib.json()
         try:
@@ -21,12 +19,12 @@ async def steamLibraryConnectivity(steamid=76561198309509452):
         print(games)
         with open('data/data.json', 'w+') as output:
             json.dump(games, output)
-        await asyncio.sleep(10)
+        await asyncio.sleep(100)
 
 
 def infiniteLoop():
     loop = asyncio.new_event_loop()
-    loop.run_until_complete(steamLibraryConnectivity(76561198309509452))
+    loop.run_until_complete(steamLibraryConnectivity(76561198149890990))
 
 
 t = threading.Thread(target=infiniteLoop)
