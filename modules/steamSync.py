@@ -3,9 +3,12 @@ import asyncio
 import json
 import requests
 
+games = None
+
 
 @asyncio.coroutine
 async def steamLibraryConnectivity(steamid=76561198149890990):
+    global games
     while True:
         userlib = requests.get(
             'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=B6137C92F67299965B5E6BF287ECA4AE&steamid={}&include_appinfo=1&format=json'.format(
@@ -14,11 +17,7 @@ async def steamLibraryConnectivity(steamid=76561198149890990):
         try:
             games = userlib['response']['games']
         except:
-            print(userlib)
             continue
-        print(games)
-        with open('data/data.json', 'w+') as output:
-            json.dump(games, output)
         await asyncio.sleep(100)
 
 
